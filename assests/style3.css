@@ -1,0 +1,107 @@
+/* 🌌 General Background & Font */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  overflow-x: hidden;
+  background: radial-gradient(ellipse at bottom, #0d1b2a, #000);
+}
+
+canvas#stars {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+/* ✨ About Section */
+.about {
+  text-align: center;
+  padding: 100px 25px;
+  min-height: 100vh;
+}
+
+.about h2 {
+  font-size: 2.5em;
+  text-shadow: 0 0 15px #00d9ff;
+  margin-bottom: 30px;
+}
+
+.about-intro {
+  font-size: 1.1em;
+  max-width: 800px;
+  margin: 0 auto 50px;
+  line-height: 1.7;
+  color: #cce7ff;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.15);
+}
+.about-intro2 {
+  font-size: 1.1em;
+  max-width: 800px;
+  margin: 0 auto 50px;
+  line-height: 1.7;
+  color: #cce7ff;
+  background: transparent;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.15);
+}
+/* 🎓 Education Section */
+.education {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+  background: transparent;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+}
+/* 00d9ff */
+.education h3 {
+  text-align: center;
+  font-size: 1.8em;
+  /* color: #00d9ff; */
+  text-shadow: 0 0 10px #00d9ff;
+  margin-bottom: 20px;
+}
+
+.edu-item {
+  margin-bottom: 25px;
+  padding: 20px;
+  border-left: 3px solid #00d9ff;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+.edu-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+}
+
+.edu-item h4 {
+  margin: 0 0 8px;
+  color: #ffffff;
+  font-size: 1.3em;
+}
+
+.edu-item p {
+  margin: 5px 0;
+  color: #cce7ff;
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  .about {
+    padding: 70px 15px;
+  }
+  .about h2 {
+    font-size: 2em;
+  }
+  .education {
+    padding: 20px;
+  }
+}
