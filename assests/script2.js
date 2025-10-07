@@ -1,5 +1,5 @@
 // Glowing Stars Background
-const canvas = document.getElementById("stars");
+const canvas = document.getElementById("stars2");
 const ctx = canvas.getContext("2d");
 
 let stars = [];
