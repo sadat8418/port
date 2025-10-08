@@ -1,11 +1,11 @@
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
 import { resolve } from "path";
-// https://vite.dev/config/
+
 export default defineConfig({
   root: ".",
   build: {
-    outDir: "dist", // build outside of src
+    outDir: "dist", 
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
