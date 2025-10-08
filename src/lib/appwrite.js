@@ -12,12 +12,15 @@ export { client, account, databases };
 
 
 
-// ⚡ Replace with your database and collection IDs
+
 const DATABASE_ID = import.meta.env.VITE_APPWRITE_DATABASE_ID;
 const COLLECTION_ID = import.meta.env.VITE_APPWRITE_TABLE_ID;
 
 const form = document.getElementById("feedbackForm");
 const messageInput = document.getElementById("messageInput");
+const messageInput2 = document.getElementById("messageInput2");
+const messageInput3 = document.getElementById("messageInput3");
+
 const responseMsg = document.getElementById("responseMsg");
 
 form.addEventListener("submit", async (e) => {
@@ -30,13 +33,16 @@ form.addEventListener("submit", async (e) => {
     await databases.createDocument(
       DATABASE_ID,
       COLLECTION_ID,
-      "unique()", // auto-generate document ID
-      { msg: message } // 👈 field name in your Appwrite collection
+      "unique()", 
+      { msg: message } // 👈 
     );
 
     responseMsg.textContent = "✅ Message sent successfully!";
     responseMsg.style.color = "#00ff88";
     messageInput.value = "";
+        messageInput2.value = "";
+                messageInput3.value = "";
+
   } catch (error) {
     console.error("❌ Appwrite Error:", error);
     responseMsg.textContent = "Error sending message.";
