@@ -199,22 +199,12 @@ canvas#stars3 {
   margin: 0 auto 50px;
   line-height: 1.7;
   color: #cce7ff;
-  background: rgba(255, 255, 255, 0.08);
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 217, 255, 0.15);
-}
-.about-intro2 {
-  font-size: 1.1em;
-  max-width: 800px;
-  margin: 0 auto 50px;
-  line-height: 1.7;
-  color: #cce7ff;
   background: transparent;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0, 217, 255, 0.15);
 }
+
 /* 🎓 Education Section */
 .education {
   max-width: 900px;
