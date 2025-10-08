@@ -4,7 +4,7 @@ import { resolve } from "path";
 // https://vite.dev/config/
 export default defineConfig({
   root: "src",
- build: {
+  build: {
     outDir: "../dist", // build outside of src
     rollupOptions: {
       input: {

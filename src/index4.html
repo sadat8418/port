@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio</title>
   <!-- <link rel="stylesheet" href="../assests/style.css" /> -->
-     <link rel="stylesheet" href="app.css">
+     <link rel="stylesheet" href="./app.css">
 
 </head>
 <body id="top2">
@@ -23,13 +23,14 @@
       <input type="email" placeholder="Your Email" required />
       <textarea id="messageInput" placeholder="Your Message" rows="5" required></textarea>
       <button type="submit">Send Message</button>
+      </form>
        <p id="responseMsg"></p>
       
     <footer>
     <p>Email: <a>sadat.arefin98@gmail.com</a></p>
     <p>&copy; 2025 Sadat Arefin. All rights reserved.</p>
   </footer>
-    </form>
+    
     
   <!-- </section>
   <section class="feedback-section">
@@ -51,7 +52,7 @@
   </div> -->
 
 <script type="module">
-  import { client } from "./lib/appwrite.js";
+  import { client } from "/lib/appwrite.js";
   import { AppwriteException } from "appwrite";
   import "@appwrite.io/pink-icons";
 
