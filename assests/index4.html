@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <!-- <link rel="stylesheet" href="../assests/style.css" /> -->
+     <link rel="stylesheet" href="../style/app.css">
+
+</head>
+<body id="top2">
+  <canvas id="stars4"></canvas>
+
+  <section class="contact">
+    <h1>Contact Me</h1>
+    <p>
+      I’m always open to exciting projects, collaborations, or just a friendly chat.
+      Feel free to reach out — let’s build something amazing together!
+    </p>
+
+    <form class="contact-form" id="feedbackForm">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea id="messageInput" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+       <p id="responseMsg"></p>
+      
+    <footer>
+    <p>Email: <a>sadat.arefin98@gmail.com</a></p>
+    <p>&copy; 2025 Sadat Arefin. All rights reserved.</p>
+  </footer>
+    </form>
+    
+  <!-- </section>
+  <section class="feedback-section">
+  <h2>💬 Leave a Message</h2>
+  <form id="feedbackForm">
+    <input type="text" id="messageInput" placeholder="Write something..." required />
+    <button type="submit">Submit</button>
+  </form> 
+  <p id="responseMsg"></p>
+</section>-->
+
+  <!-- Floating Bottom Buttons -->
+  <!-- <div class="bottom-icons">
+    <a href="index.html" class="icon" title="Home"><img src="assets/home.svg" alt="Home" /></a>
+    <a href="about.html" class="icon" title="About"><img src="assets/user.svg" alt="About" /></a>
+    <a href="projects.html" class="icon" title="Projects"><img src="assets/work.svg" alt="Projects" /></a>
+    <a href="contact.html" class="icon active" title="Contact"><img src="assets/mail.svg" alt="Contact" /></a>
+    <a href="https://linkedin.com" target="_blank" class="icon" title="LinkedIn"><img src="assets/linkedin.svg" alt="LinkedIn" /></a>
+  </div> -->
+
+<script type="module">
+  import { client } from "../lib/appwrite.js";
+  import { AppwriteException } from "appwrite";
+  import "@appwrite.io/pink-icons";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    let logs = [];
+    let status = "idle";
+    let showLogs = false;
+
+    const detailsRef = document.getElementById("logs-details");
+    const main = document.getElementById("main");
+    const statusMessage = document.getElementById("status-message");
+    const statusDescription = document.getElementById("status-description");
+    const pingButton = document.getElementById("ping-button");
+    const loadingSpinner = document.getElementById("loading-spinner");
+    const successIcon = document.getElementById("success-icon");
+    const logCount = document.getElementById("log-count");
+    const logCountValue = document.getElementById("log-count-value");
+    const logTable = document.getElementById("log-table");
+
+    const updateHeight = () => {
+      if (detailsRef) {
+        const height = detailsRef.clientHeight;
+        main.style.marginBottom = `${height}px`;
+      }
+    };
+
+    window.addEventListener("resize", updateHeight);
+
+    detailsRef.addEventListener("toggle", updateHeight);
+
+    async function sendPing() {
+      if (status === "loading") return;
+      status = "loading";
+      statusMessage.textContent = "";
+      statusDescription.textContent = "";
+      pingButton.style.display = "none";
+      loadingSpinner.style.display = "flex";
+
+      try {
+        const result = await client.ping();
+        const log = {
+          date: new Date(),
+          method: "GET",
+          path: "/v1/ping",
+          status: 200,
+          response: JSON.stringify(result),
+        };
+        logs.unshift(log);
+        status = "success";
+        statusMessage.textContent = "Congratulations!";
+        statusDescription.textContent = "You connected your app successfully.";
+
+        updateLogs();
+      } catch (err) {
+        const log = {
+          date: new Date(),
+          method: "GET",
+          path: "/v1/ping",
+          status: err instanceof AppwriteException ? err.code : 500,
+          response: err instanceof AppwriteException ? err.message : "Something went wrong",
+        };
+        logs.unshift(log);
+        status = "error";
+        statusMessage.textContent = "Check connection";
+        statusDescription.textContent = "Send a ping to verify the connection";
+        updateLogs();
+      }
+      pingButton.style.display = "block";
+      loadingSpinner.style.display = "none";
+      successIcon.style.opacity = status === "success" ? "100" : "0";
+      showLogs = true;
+    }
+
+    const updateLogs = () => {
+      logTable.innerHTML = "";
+      if (logs.length > 0) {
+        logCount.style.display = "flex";
+        logCountValue.textContent = logs.length;
+        logs.forEach((log) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+          <td class="py-2 pl-4 font-[Fira_Code]">${log.date.toLocaleString("en-US", {
+            month: "short",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          })}</td>
+          <td>
+            <div class="w-fit rounded-sm ${log.status > 400 ? "bg-[#FF453A3D] text-[#B31212]" : "bg-[#10B9813D] text-[#0A714F]"} px-1">
+              ${log.status}
+            </div>
+          </td>
+          <td>${log.method}</td>
+          <td class="hidden lg:table-cell">${log.path}</td>
+          <td class="hidden font-[Fira_Code] lg:table-cell">${log.response}</td>
+        `;
+          logTable.appendChild(row);
+        });
+      } else {
+        logCount.style.display = "none";
+        const row = document.createElement("tr");
+        row.innerHTML = `<td class="py-2 pl-4 font-[Fira_Code]">There are no logs to show</td>`;
+        logTable.appendChild(row);
+      }
+    };
+
+    pingButton.addEventListener("click", sendPing);
+    document.getElementById('project-endpoint').textContent = import.meta.env.VITE_APPWRITE_ENDPOINT;
+    document.getElementById('project-id').textContent = import.meta.env.VITE_APPWRITE_PROJECT_ID;
+    document.getElementById('project-name').textContent = import.meta.env.VITE_APPWRITE_PROJECT_NAME;
+    updateHeight();
+  });
+</script>
+
+  <script src="script4.js"></script>
+  
+</body>
+</html>
