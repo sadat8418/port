@@ -34,12 +34,12 @@ form.addEventListener("submit", async (e) => {
       { msg: message } // 👈 field name in your Appwrite collection
     );
 
-    responseMsg.textContent = "✅ Message saved successfully!";
+    responseMsg.textContent = "✅ Message sent successfully!";
     responseMsg.style.color = "#00ff88";
     messageInput.value = "";
   } catch (error) {
     console.error("❌ Appwrite Error:", error);
-    responseMsg.textContent = "Error saving message.";
+    responseMsg.textContent = "Error sending message.";
     responseMsg.style.color = "red";
   }
 });

@@ -90,10 +90,12 @@ body {
 }
 #top2 {
   height: 100%;
+  margin: 0;
+  padding: 0;
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   color: white;
   font-family: 'Poppins', sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 canvas#stars2 {
   position: fixed;
@@ -275,12 +277,13 @@ canvas#stars4 {
   position: fixed;
   inset: 0;
   z-index: -1;
+  
 }
 
 .contact {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   text-align: center;
-  padding: 100px 20px 150px;
+  padding: 100px 20px 0px;
 }
 
 .contact h1 {
@@ -341,6 +344,7 @@ canvas#stars4 {
 .contact-form button:hover {
   background: white;
   transform: scale(1.05);
+  /* margin-bottom: 70%; */
 }
 
 /* Floating icons */
@@ -382,8 +386,8 @@ canvas#stars4 {
   box-shadow: 0 0 25px #00d9ff;
 }
 
+
 footer {
-  margin-top: 40px;
   color: #a9c8ff;
   font-size: 0.9em;
 }
@@ -392,6 +396,8 @@ footer a {
   color: #00d9ff;
   text-decoration: none;
 }
+
+
 @media (max-width: 600px) {
   .icon {
     width: 40px;
@@ -405,6 +411,7 @@ footer a {
   flex-direction: column;
   align-items: center;
   margin-top: 40px;
+ 
   /* align-items: center; */
 }
 }
