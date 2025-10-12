@@ -12,6 +12,8 @@ export default defineConfig({
         page2: resolve(__dirname, "src/index2.html"),
         page3: resolve(__dirname, "src/index3.html"),
         page4: resolve(__dirname, "src/index4.html"),
+        page5: resolve(__dirname, "src/index1.html"),
+
       },
     },
   },
