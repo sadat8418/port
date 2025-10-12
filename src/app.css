@@ -258,7 +258,7 @@ canvas#stars3 {
   .edu-item2 {
   margin-bottom: 25px;
   padding: 0px;
-  border-left: 3px solid #00d9ff;
+  border-left: 0px solid #00d9ff;
   background: white;
   border-radius: 10px;
   transition: 0.3s ease;
